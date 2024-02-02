@@ -1,0 +1,1 @@
+// Implement routes to monitor the performance of your blog API, such as response times, error rates, and resource usage. This helps identify and address performance issues proactively.

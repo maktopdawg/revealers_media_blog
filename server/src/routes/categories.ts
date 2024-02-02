@@ -1,0 +1,1 @@
+// Handle operations related to blog post categories such as creating, updating, deleting, and fetching categories.

@@ -1,0 +1,2 @@
+// Create routes for performing bulk operations on blog posts, such as bulk deletion, bulk updating, or bulk categorization. 
+// This provides users with a convenient way to manage multiple posts at once.
