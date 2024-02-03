@@ -1,0 +1,1 @@
+// After user writes story, it get send here and from here a editor can edit it and grant permission
