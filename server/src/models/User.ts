@@ -10,11 +10,11 @@ const userSchema = new Schema({
     },
     surname: {
         type: String,
-        required: true,
     },
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     profilePicture: {
         type: String,
@@ -23,7 +23,7 @@ const userSchema = new Schema({
     roles: {
         User: {
             type: Number,
-            default: process.env.USER
+            default: 1458
         },
         Admin: Number,
         Editor: Number,
@@ -47,8 +47,8 @@ const userSchema = new Schema({
     subscription: {
         type: {
             type: String,
-            enum: ['FREE', 'NEWSLETTER', 'PREMIUM'],
-            default: 'FREE'
+            enum: ['BASIC', 'NEWSLETTER', 'PREMIUM'],
+            default: 'BASIC'
         },
         newsletterSubscription: {
             type: Boolean,

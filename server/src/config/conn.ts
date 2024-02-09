@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-import dotenv from 'dotenv';
+// import dotenv from 'dotenv';
 
 /**
  * Load enviroment variables from .env file into process.env.
  * This allows for configuration of enviroment-specific settings.
  */
-dotenv.config();
+// dotenv.config();
 
 /**
  * Establishes a connection to the MongoDB database using Mongoose.
