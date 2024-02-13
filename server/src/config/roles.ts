@@ -9,38 +9,38 @@ export const ROLES = {
      * Admin role: Can create, edit, and manage all posts, access site management features,
      * manage subscriptions, review posts and polls, create and manage polls, and manage user accounts and comments.
      */
-    "Admin": process.env.ADMIN,
+    "Admin": 541764,
 
     /**
      * Editor role: Can create and edit posts, access and review all posts and polls, create and manage polls,
      * and manage comments.
      */
-    "Editor": process.env.EDITOR,
+    "Editor": 872389,
 
     /**
      * Author role: Can create and edit own posts, access and create polls.
      */
-    "Author": process.env.AUTHOR,
+    "Author": 129954,
 
     /**
      * User role: Can read posts and leave comments.
      */
-    "User": process.env.USER,
+    "User": 439054,
 
     /**
      * Moderator role: Has the ability to moderate user-generated content,
      * manage comments, and assist in enforcing community guidelines.
      */
-    "Moderator": process.env.MODERATOR,
+    "Moderator": 239097,
 
     /**
      * Contributor role: Can submit posts for review and publishing by higher-level roles,
      * but does not have direct editing capabilities.
      */
-    "Contributor": process.env.CONTRIBUTOR,
+    "Contributor": 455467,
 
     /**
      * Viewer role: Has read-only access to posts and cannot interact with the site beyond viewing content.
      */
-    "Viewer": process.env.VIEWER
+    "Viewer": 103681
 }
