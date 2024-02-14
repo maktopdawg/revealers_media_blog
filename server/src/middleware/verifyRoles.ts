@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 
 interface CustomRequest extends Request {
-    roles?: string[]
+    roles?: number[]
 }
 
-const verifyRoles = (...allowedRoles: string[]) => {
+const verifyRoles = (...allowedRoles: number[]) => {
     return (req: CustomRequest, res: Response, next: NextFunction) => {
         if (!req?.roles) return res.sendStatus(401);
         const rolesArray = [...allowedRoles];

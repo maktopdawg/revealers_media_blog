@@ -4,7 +4,7 @@ dotenv.config()
 /**
  * Defines roles and their corresponding permissions.
  */
-export const ROLES = {
+const ROLES = {
     /**
      * Admin role: Can create, edit, and manage all posts, access site management features,
      * manage subscriptions, review posts and polls, create and manage polls, and manage user accounts and comments.
@@ -43,4 +43,6 @@ export const ROLES = {
      * Viewer role: Has read-only access to posts and cannot interact with the site beyond viewing content.
      */
     "Viewer": 103681
-}
+};
+
+export default ROLES;
