@@ -38,7 +38,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
         if (!users) return res.status(204).json({ 'response': 'No users found' });
         res.json(users);
     } else {
-        const filterLowercase: string | undefined = filter?.toString().toLowerCase()
+        const filterLowercase: string | undefined = filter?.toString().toLowerCase();
         if (filterLowercase === 'admin') {
             return getAllAdminUsers(req, res)
 
@@ -53,8 +53,39 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
         } else if (filterLowercase === 'unverified') {
             return getAllUnverifiedUsers(req, res)
+
         } else {
             return res.send({ "users": [] })
+        }
+    }
+}
+
+
+export const getUsersBySubsciption = (req: Request, res: Response) => {
+    const result = validationResult(req)
+    console.log(result)
+
+    const { query: { filter, value } } = req;
+
+    if (!filter && !value) {
+        console.log('Render Nothing')
+        res.send({
+            "subscriptionTypes": [
+                "Newsletter", "Premium"
+            ] 
+        })
+
+    } else {
+        const filterLowercase: string | undefined = filter?.toString().toLowerCase();
+
+        if (filterLowercase === 'newsletter') {
+            return getNewsletterSubscribedUsers(req, res)
+
+        } else if (filterLowercase === 'premium') {
+            return getPremiumSubscribedUsers(req, res)
+
+        } else {
+            res.send({ "users": [] })
         }
     }
 }
@@ -171,4 +202,14 @@ export const getNewsletterSubscribedUsers = async (req: Request, res: Response) 
 }
 
 
-// create controller for handling all things subscription
+/**
+ * Retrieves users subscribed to the premium feature from the database.
+ * @param {Request} req - The request object.
+ * @param {Response} res - The response object.
+ * @returns {Promise<void>} - A promise resolving to the list of users subscribed to the newsletter.
+ */
+export const getPremiumSubscribedUsers = async (req: Request, res: Response) => {
+    const users = await User.find({ "subscription.premiumSubscription": true });
+    if (!users) return res.status(204).json({ 'response': 'No user has subscribed to the newsletter subscription.' });
+    res.json(users);
+}
