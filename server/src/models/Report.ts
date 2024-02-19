@@ -6,7 +6,7 @@ dotenv.config();
 const ReportingSchema = new Schema({
     reportType: {
         type: String,
-        enum: ['Bug', 'Feature Request', 'User Feedback', 'Other'],
+        enum: ['Bug', 'Feature Request', 'User Feedback', 'Complaint', 'Other'],
         required: true
     },
     description: {
@@ -14,8 +14,7 @@ const ReportingSchema = new Schema({
         required: true
     },
     reportedBy: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+        type: String,
         required: true
     },
     createdAt: {
@@ -27,7 +26,7 @@ const ReportingSchema = new Schema({
         enum: ['Open', 'In Progress', 'Resolved', 'Closed'],
         default: 'Open'
     },
-        assignedTo: {
+    assignedTo: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
