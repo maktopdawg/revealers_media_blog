@@ -4,8 +4,15 @@ import { Router } from "express";
 import verifyRoles from "../middleware/verifyRoles";
 import ROLES from "../config/roles";
 import { query } from "express-validator";
+import { createPollController, getAllPollsController, deletePollController } from "../controllers/pollsControllers";
 
 const router = Router();
 
 router.route('/api/polls')
-    .get()
+    .post(createPollController)
+    .get(getAllPollsController)
+
+router.route('/api/polls/:id')
+    .delete(deletePollController)
+
+export default router;

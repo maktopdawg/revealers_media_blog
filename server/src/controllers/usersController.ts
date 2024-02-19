@@ -35,7 +35,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
     if (!filter && !value) {
         console.log('Render All Users')
         const users = await User.find();
-        if (!users) return res.status(204).json({ 'response': 'No users found' });
+        if (!users) return res.status(204).json({ 'response': 'No users found.' });
         res.json(users);
     } else {
         const filterLowercase: string | undefined = filter?.toString().toLowerCase();
@@ -153,7 +153,7 @@ export const getAllAuthorUsers = async (req: Request, res: Response) => {
  */
 export const getAllVerifiedUsers = async (req: Request, res: Response) => {
     const users = await User.find({ isVerified: true });
-    if (!users) return res.status(204).json({ 'response': 'No users found' });
+    if (!users) return res.status(204).json({ 'response': 'No users found.' });
     res.json(users);
 }
 
@@ -166,7 +166,7 @@ export const getAllVerifiedUsers = async (req: Request, res: Response) => {
  */
 export const getAllUnverifiedUsers = async (req: Request, res: Response) => {
     const users = await User.find({ isVerified: false });
-    if (!users) return res.status(204).json({ 'response': 'No users found' });
+    if (!users) return res.status(204).json({ 'response': 'No users found.' });
     res.json(users);
 }
 
@@ -178,7 +178,7 @@ export const getAllUnverifiedUsers = async (req: Request, res: Response) => {
  * @returns {Promise<void>} - A promise resolving to the result of the deletion operation.
  */
 export const deleteUser = async (req: Request, res: Response) => {
-    if (!req?.body?.id) return res.status(400).json({ 'message': 'User ID is required' });
+    if (!req?.body?.id) return res.status(400).json({ 'message': 'User ID is required.' });
     const id = req.body.id;
     const user = await User.findOne({ _id: id }).exec();
     if (!user) {
