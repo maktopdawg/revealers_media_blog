@@ -42,6 +42,8 @@ export const getReports = async (req: Request, res: Response) => {
         res.json(reports)
     } else {
         const filterLowercase: string | undefined = filter?.toString().toLowerCase();
+        console.log(filter)
+        console.log(req.query)
 
         if (filterLowercase === 'bug') {
             return getReportsByType(req, res, 'Bug')
@@ -53,6 +55,8 @@ export const getReports = async (req: Request, res: Response) => {
             return getReportsByType(req, res, 'Complaint')
         } else if (filterLowercase === 'other') {
             return getReportsByType(req, res, 'Other')
+        } else if (filterLowercase === 'open') {
+            return getReportsByStatus(req, res, 'open')
         } else {
             return res.send({ "reports": [] })
         }
@@ -65,3 +69,26 @@ export const getReportsByType = async (req: Request, res: Response, reportType: 
     if (!reports) return res.status(204).json({ 'response': 'No reports found.' });
     res.json(reports)
 }
+
+
+export const getReportsByStatus = async (req: Request, res: Response, status: string) => {
+    const reports = await Report.find({ status: status });
+    if (!reports) return res.status(204).json({ 'response': 'No reports found.' });
+    res.json(reports)
+}
+
+
+export const deleteReport = async (req: Request, res: Response) => {
+    if (!req.body.id) return res.status(400).json({ "response": "Report ID is required" });
+    const id = req.body.id;
+    try {
+        const report = await Report.findOneAndDelete({ _id: id });
+        if (!report) {
+            return res.status(404).json({ "response": `Report ID ${id} not found` });
+        }
+        return res.json({ "response": `Report ID ${id} deleted successfully` });
+    } catch (error) {
+        console.error("Error deleting report:", error);
+        return res.status(404).json({ "response": `Report ID ${id} not found` });
+    }
+};
