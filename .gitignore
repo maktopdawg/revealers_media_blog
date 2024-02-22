@@ -30,3 +30,5 @@ npm-debug.log*
 
 # Ignore macOS system files
 .DS_Store
+
+server/logs/reqLog.txt

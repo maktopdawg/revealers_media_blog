@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import connectDB from './config/conn';
 import mongoose from 'mongoose';
 import routes from './routes/index'
+import logger from './middleware/logEvents';
 
 dotenv.config();
 
@@ -10,6 +11,8 @@ connectDB();
 
 const app: Express = express();
 const PORT = process.env.PORT || 3900;
+
+app.use(logger)
 
 app.use(express.json())
 

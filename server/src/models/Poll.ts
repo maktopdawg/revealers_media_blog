@@ -49,6 +49,18 @@ const PollSchema = new Schema({
         type: Number,
         default: 0
     },
+    likedUsers: [
+        {
+            type: String,
+            default: null
+        }
+    ],
+    dislikedUsers: [
+        {
+            type: String,
+            default: null
+        }
+    ],
     createdBy: {
         type: Schema.Types.ObjectId,
         ref: 'User',

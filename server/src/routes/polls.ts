@@ -1,18 +1,42 @@
-// Allow users to create and participate in polls related to blog content. 
-// Create routes for creating, updating, deleting, and fetching polls, as well as submitting poll responses.
 import { Router } from "express";
+import { body, param } from "express-validator";
 import verifyRoles from "../middleware/verifyRoles";
 import ROLES from "../config/roles";
-import { query } from "express-validator";
-import { createPollController, getAllPollsController, deletePollController } from "../controllers/pollsControllers";
+import { 
+    createPollController, 
+    getAllPollsController, 
+    deletePollController, 
+    getPollById, 
+    addVote, 
+    removeVote, 
+    likePoll, 
+    dislikePoll, 
+    undoLikeDislikePoll
+} from "../controllers/pollsControllers";
 
 const router = Router();
 
 router.route('/api/polls')
-    .post(createPollController)
+    .post(
+        body('title').notEmpty().withMessage('Title is required.'),
+        body('options').isArray({ min: 2 }).withMessage('At least two options are required.'),
+        createPollController
+    )
     .get(getAllPollsController)
+    .delete(deletePollController);
 
 router.route('/api/polls/:id')
-    .delete(deletePollController)
+    .get(
+        param('id').notEmpty().withMessage('Poll ID is required.'),
+        getPollById
+    );
+
+router.patch('/api/polls/:id/like', likePoll);
+router.patch('/api/polls/:id/dislike', dislikePoll);
+
+router.patch('/api/polls/:id/add-vote', addVote);
+router.patch('/api/polls/:id/remove-vote', removeVote);
+
+router.patch('/api/polls/:id/remove-like-and-dislike', undoLikeDislikePoll);
 
 export default router;
