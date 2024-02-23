@@ -101,10 +101,10 @@ export const getAllAdminUsers = async (req: Request, res: Response) => {
     try {
         const users = await User.find({ "roles.Admin": { $exists: true } });
         if (!users) return res.status(204).json({ 'response': 'No users found.' });
-        res.json({users});
+        return res.json({users});
     } catch (err) {
         console.error("Error fecthing users by role:", err)
-        res.status(500).json({ 'response': 'An internal server error has occured.' });
+        return res.status(500).json({ 'response': 'An internal server error has occured.' });
     }
 }
 

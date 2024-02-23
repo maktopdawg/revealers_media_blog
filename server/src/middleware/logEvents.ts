@@ -39,7 +39,7 @@ const logEvents = async (message: string, fileName: string): Promise<void> => {
  */
 const logger = (req: Request, res: Response, next: NextFunction): void => {
     logEvents(`${req.method}\t${req.headers.origin}\t${req.url}`, 'reqLog.txt');
-    console.log(`${req.method} ${req.path}`);
+    console.log(`⚡️[server]: ${req.method} ${req.path}`);
     next();
 }
 
