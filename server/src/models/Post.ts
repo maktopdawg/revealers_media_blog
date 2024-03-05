@@ -6,7 +6,7 @@ dotenv.config();
 const PostSchema = new Schema({
     title: {
         type: String,
-        required: true
+        required: true,
     },
     author: {
         type: String,
@@ -21,7 +21,11 @@ const PostSchema = new Schema({
         default: Date.now
     },
     updatedAt: Date,
-    catergory: String,
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Categories',
+        required: true
+    },
     description: {
         type: String,
         required: true,

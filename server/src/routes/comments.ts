@@ -1,2 +1,12 @@
-// Create routes to manage comments on blog posts. 
-// Allow users to add, update, delete, and fetch comments associated with specific posts.
+import { Router } from "express";
+import { body, param } from "express-validator";
+import ROLES from "../config/roles";
+import { AddNewComment } from "../controllers/commentsController";
+
+const router = Router();
+
+router.route('/api/news/:slug/comments')
+    .post(AddNewComment)
+
+
+export default router;

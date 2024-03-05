@@ -13,17 +13,13 @@ const categorySchema = new Schema({
         type: String,
         required: true
     },
-    parentCategory: {
-        type: Schema.Types.ObjectId,
-        ref: 'Category'
-    },
     subcategories: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Category'
+        type: String
     }],
     createdBy: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     createdAt: {
         type: Date,
